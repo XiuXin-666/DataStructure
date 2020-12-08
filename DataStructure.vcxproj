@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="DataStructure.cpp" />
+    <ClCompile Include="LinkList.cpp" />
     <ClCompile Include="SequentialList.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
