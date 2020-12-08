@@ -1,23 +1,53 @@
 //顺序表
 //基本操作：创建销毁，初始化，增删改查
 #include <iostream>
+#include <stdlib.h>
 using namespace std;
 
 //静态方法实现
-#define MaxSize 10   //定义宏 ， 后面不能加逗号
+#define MAXSIZE 100   //定义宏 ， 后面不能加逗号
 
 typedef int ElemType;   //将int 定义为ElemType    typedef：类型定义
 typedef int Status;
 
 typedef struct {
-	ElemType Data[MaxSize];
+	ElemType Data[MAXSIZE];
 	ElemType length;
 }Seqlist;
 
+//动态方法实现
+//#define  InitSize 10
+//typedef int ElemType;
+//
+//typedef struct SeqList {
+//	ElemType* elem;
+//	int length;
+//	int MaxSize;
+//}SeqList;
+//
+////初始化顺序表
+//void InitSeqList(SeqList& L) {
+//	L.elem = (ElemType*)malloc(sizeof(ElemType) * InitSize);
+//	L.elem = new ElemType[InitSize];   //C++动态分配
+//	L.length = 0;
+//	L.MaxSize = InitSize;
+//
+//}
+//
+////增加动态数组的长度
+//void IncreaseSize(SeqList& L, int len) {
+//	ElemType* p = L.elem;  //新建指针指向数组首部
+//	L.elem = (ElemType*)malloc(sizeof(ElemType) * (L.MaxSize + len));  //在别处开辟(MaxSize+len)*sizeof(ElemType)连续的空间
+//	for (int i = 0; i < L.length; i++) {
+//		L.elem[i] = p[i];
+//	}
+//	L.MaxSize += len;
+//	free(p);
+//}
 
 //初始化顺序表
 Status InitSeqList(Seqlist& L) {
-	for (int i = 0; i < MaxSize; i++) {
+	for (int i = 0; i < MAXSIZE; i++) {
 		L.Data[i] = 0;
 	}
 	if (!L.Data)
@@ -59,11 +89,11 @@ bool Insert(Seqlist& L, ElemType i, ElemType e) {
 	if (i<1 || i>L.length + 1) {
 		return false;
 	}
-	L.length++;   //一定要记住 长度加一
 	for (int j = L.length; j >= i; j--) {
 		L.Data[j] = L.Data[j - 1];
 	}	
 	L.Data[i - 1] = e;	
+  L.length++;   //一定要记住 长度加一
 	return true;
 }
 
@@ -171,3 +201,4 @@ int main() {
 	}
 	return 0;
 }
+
